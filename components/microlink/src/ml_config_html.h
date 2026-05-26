@@ -148,21 +148,21 @@ static const char CONFIG_PAGE_HTML[] =
 "<div class='msg' id='wifiMsg'></div>"
 "</div></div>"
 
-/* ---- Peers Section ---- */
-"<div class='section'>"
-"<div class='section-hdr'><h2>Peer Allowlist</h2>"
-"<span style='color:#8b949e;font-size:.75em'>changes apply immediately</span></div>"
-"<div class='section-body'>"
-"<p style='font-size:.8em;color:#8b949e;margin-bottom:10px'>"
-"Only allowed peers receive DISCO probes. Empty list = probe all peers.</p>"
-"<div id='allowedList' class='peer-list'></div>"
-"<div class='add-form'>"
-"<input type='text' id='addIp' placeholder='100.x.y.z'>"
-"<input type='text' id='addLabel' placeholder='label (optional)'>"
-"<button class='btn-add btn-sm' onclick='addAllowed()'>Add</button>"
-"</div>"
-"<div class='msg' id='peersMsg'></div>"
-"</div></div>"
+/* ---- Machines Section ---- */ // to be added later
+// "<div class='section'>"
+// "<div class='section-hdr'><h2>Peer Allowlist</h2>"
+// "<span style='color:#8b949e;font-size:.75em'>changes apply immediately</span></div>"
+// "<div class='section-body'>"
+// "<p style='font-size:.8em;color:#8b949e;margin-bottom:10px'>"
+// "Only allowed peers receive DISCO probes. Empty list = probe all peers.</p>"
+// "<div id='allowedList' class='peer-list'></div>"
+// "<div class='add-form'>"
+// "<input type='text' id='addIp' placeholder='100.x.y.z'>"
+// "<input type='text' id='addLabel' placeholder='label (optional)'>"
+// "<button class='btn-add btn-sm' onclick='addAllowed()'>Add</button>"
+// "</div>"
+// "<div class='msg' id='peersMsg'></div>"
+// "</div></div>"
 
 
 /* ---- Settings Section ---- */
@@ -420,16 +420,6 @@ static const char CONFIG_PAGE_HTML[] =
 "}catch(e){showMsg('wifiMsg','Save failed: '+e,false);}"
 "}"
 
-/* ---- Peer Allowlist ---- */
-"async function loadAllowed(){"
-"try{"
-"const r=await fetch('/api/peers/allowed');"
-"const d=await r.json();"
-"allowedPeers=d.peers||[];"
-"renderAllowed();"
-"}catch(e){}"
-"}"
-
 "function renderAllowed(){"
 "const el=document.getElementById('allowedList');"
 "if(allowedPeers.length===0){"
@@ -482,7 +472,8 @@ static const char CONFIG_PAGE_HTML[] =
 "}"
 
 /* ---- Init ---- */
-"loadStatus();loadWifi();loadSettings();loadAllowed();loadMonitor();"
+"loadStatus();loadWifi();loadSettings();loadMonitor();"
+// "loadAllowed();"
 "setInterval(loadStatus,5000);"
 "setInterval(loadMonitor,3000);"
 "</script></body></html>";

@@ -1121,9 +1121,6 @@ esp_err_t ml_config_httpd_start(ml_config_ctx_t *ctx, microlink_t *ml) {
         { .uri = "/api/settings",    .method = HTTP_POST,   .handler = handler_post_settings, .user_ctx = ctx },
         { .uri = "/api/monitor",     .method = HTTP_GET,    .handler = handler_monitor,       .user_ctx = ctx },
         { .uri = "/api/peers",       .method = HTTP_GET,    .handler = handler_get_peers,     .user_ctx = ctx },
-        { .uri = "/api/peers/allowed", .method = HTTP_GET,  .handler = handler_get_allowed,   .user_ctx = ctx },
-        { .uri = "/api/peers/allowed", .method = HTTP_POST, .handler = handler_post_allowed,  .user_ctx = ctx },
-        { .uri = "/api/peers/allowed", .method = HTTP_DELETE, .handler = handler_delete_allowed, .user_ctx = ctx },
         { .uri = "/api/restart",     .method = HTTP_POST,   .handler = handler_restart,       .user_ctx = ctx },
         { .uri = "/api/wifi",        .method = HTTP_GET,    .handler = handler_get_wifi,      .user_ctx = ctx },
         { .uri = "/api/wifi",        .method = HTTP_POST,   .handler = handler_post_wifi,     .user_ctx = ctx },
@@ -1135,6 +1132,12 @@ esp_err_t ml_config_httpd_start(ml_config_ctx_t *ctx, microlink_t *ml) {
 
     ESP_LOGI(TAG, "HTTP config server started on port %d", config.server_port);
     return ESP_OK;
+}
+
+httpd_handle_t ml_get_httpd_handle(ml_config_ctx_t *ctx){
+    if(!ctx) return NULL;
+    if(ctx->httpd) return ctx->httpd;
+    return NULL;
 }
 
 void ml_config_httpd_stop(ml_config_ctx_t *ctx) {

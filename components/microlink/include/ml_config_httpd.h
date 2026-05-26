@@ -17,6 +17,7 @@
 #pragma once
 
 #include "sdkconfig.h"
+#include "esp_http_server.h"
 #include "esp_err.h"
 #include <stdint.h>
 #include <stdbool.h>
@@ -209,6 +210,17 @@ bool ml_config_get_nvs_apn(char *apn, size_t apn_len);
  * @return true if list was loaded (count > 0)
  */
 bool ml_config_get_wifi_list(ml_config_wifi_list_t *list);
+
+/**
+ * @brief Return HTTPD handle for web server
+ *
+ * Returns the httpd_handle_t for adding new URIs to the same dashboard 
+ * without changing a port or adding any new servers
+ *
+ * @param ctx Opaque ctx variable which we want the httpd_handle_t for
+ * @return return the handle or NULL if not initialized/web server not started
+ */
+httpd_handle_t ml_get_httpd_handle(ml_config_ctx_t *ctx);
 
 #ifdef __cplusplus
 }
