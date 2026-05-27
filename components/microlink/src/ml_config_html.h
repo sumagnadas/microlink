@@ -117,7 +117,7 @@ static const char CONFIG_PAGE_HTML[] =
 /* ---- Monitor Section ---- */
 "<div class='section'>"
 "<div class='section-hdr'><h2>System Monitor</h2>"
-"<span style='color:#8b949e;font-size:.75em' id='monAutoRefresh'>auto-refresh 3s</span></div>"
+"<button class='btn-sm btn-add' onClick='doRefreshMonitor()'>Refresh</button></div>"
 "<div class='section-body'>"
 "<div class='mon-grid'>"
 "<div class='mon-card'><div class='val' id='mTemp'>--</div><div class='lbl'>Temperature</div></div>"
@@ -471,9 +471,14 @@ static const char CONFIG_PAGE_HTML[] =
 "document.getElementById('vpnIp').textContent='Restarting...';"
 "}"
 
+"function doRefreshMonitor(){"
+"loadStatus();"
+"loadMonitor();"
+"}"
+
 /* ---- Init ---- */
 "loadStatus();loadWifi();loadSettings();loadMonitor();"
 // "loadAllowed();"
-"setInterval(loadStatus,5000);"
-"setInterval(loadMonitor,3000);"
+// "setInterval(loadStatus,5000);"
+// "setInterval(loadMonitor,3000);"
 "</script></body></html>";
