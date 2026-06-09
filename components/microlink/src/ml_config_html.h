@@ -153,7 +153,8 @@ static const char CONFIG_PAGE_HTML[] =
 /* ---- Machines Section ---- */ // to be added later
 "<div class='section'>"
 "<div class='section-hdr'><h2>Machine List</h2>"
-"<span style='color:#8b949e;font-size:.75em'>changes apply immediately</span></div>"
+"<span style='color:#8b949e;font-size:.75em'>changes apply immediately</span>"
+"<button class='btn-add btn-sm' onclick='refreshMachines()'>Refresh</button></div>"
 "<div class='section-body'>"
 // "<p style='font-size:.8em;color:#8b949e;margin-bottom:10px'>"
 // "Only allowed peers receive DISCO probes. Empty list = probe all peers.</p>"
@@ -484,6 +485,11 @@ static const char CONFIG_PAGE_HTML[] =
 "}catch(e){}"
 "}"
 
+/**/
+"async function refreshMachines(){"
+"await loadMachines();"
+"await renderMachines();"
+"}"
 
 /* ---- Restart ---- */
 "async function doRestart(){"
